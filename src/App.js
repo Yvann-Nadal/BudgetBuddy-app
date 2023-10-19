@@ -1,8 +1,11 @@
+import { BrowserRouter } from "react-router-dom";
+import MainRouter from "./app/routing/MainRouter";
+
 function App() {
   return (
-    <div className="App">
-      <h1>BudgetBuddy</h1>
-    </div>
+    <BrowserRouter>
+      <MainRouter />
+    </BrowserRouter>
   );
 }
 
