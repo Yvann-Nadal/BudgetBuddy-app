@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Login = () => {
   return (
     <Box
       sx={{
@@ -31,4 +31,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Login;
