@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 
 const Account = ({ users }) => {
   const { id } = useParams();
-  const account = users.map(account => account._id === id);
+  const account = users.map(user => user.accounts.find(account => account._id === id));
   console.log(account, "ACCOUNT");
   return (
     <Box>
-      <Typography variant="h4">oefef</Typography>
+      <Typography variant="h4">{account[0].name}</Typography>
+      <Typography variant="h5">{account[0].balance}</Typography>
     </Box>
   );
 };
