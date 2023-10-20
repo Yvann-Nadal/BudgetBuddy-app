@@ -7,15 +7,16 @@ import { useParams } from "react-router-dom";
 const AccountPage = () => {
   const [account, setAccount] = useState([]);
   const { id } = useParams();
-  const [user, setUser] = useState([]);
-  const [userConnected, setUserConnected] = useState([]);
+  const [user, setUser] = useState();
+  const [userConnected, setUserConnected] = useState(null);
 
   useEffect(() => {
     getUserConnected();
   }  , []);
 
   useEffect(() => {
-    getUser();
+    if(userConnected) {
+      getUser();    }
   }, [userConnected]);
 
 
@@ -38,15 +39,17 @@ const AccountPage = () => {
 
   const getUser = async () => {
     const token = TokenService.getTokenFromLocalStorage();
-    const res = await fetch(`http://localhost:8000/api/users/${userConnected.sub}`, {
-      method: "GET",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
-    const data = await res.json();
-    setUser(data);
+    if(userConnected) {
+      const res = await fetch(`http://localhost:8000/api/users/${userConnected.sub}`, {
+        method: "GET",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setUser(data);
+    }
   };
   
   console.log("user", user);
@@ -58,7 +61,8 @@ const AccountPage = () => {
 
   return (
     <Box>
-      <Typography variant="h4">Account Page</Typography>
+      <Typography variant="h4">
+      </Typography>
     </Box>
   );
 };
