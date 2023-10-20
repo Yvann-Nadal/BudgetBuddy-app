@@ -1,11 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import Account from "../components/Account";
 
 const AccountPage = ({ users }) => {
-  return (
-    <Box>
-      <Typography variant="h4">Account Page</Typography>
-    </Box>
-  );
+  return <Account users={users} />;
 };
 
 export default AccountPage;
