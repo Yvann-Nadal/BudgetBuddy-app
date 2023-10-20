@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
 import AccountPage from "../pages/AccountPage";
 import { useEffect, useState } from "react";
 import usersService from "../../setup/user.service";
+import Signin from "../pages/connection/signin";
+import Signup from "../pages/connection/signup";
 
 const MainRouter = () => {
   const [users, setUsers] = useState([]);
@@ -24,8 +25,9 @@ const MainRouter = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<LoginPage users={users} />} />
-      <Route path="/account/:id" element={<AccountPage users={users} />} />
+      <Route path="/signup" element={<Signup users={users} />} />
+      <Route path="/signin" element={<Signin users={users} />} />
+      <Route path="/account" element={<AccountPage users={users} />} />
     </Routes>
   );
 };
