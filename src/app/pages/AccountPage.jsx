@@ -5,25 +5,55 @@ import TokenService from "../../setup/token.service";
 import { useParams } from "react-router-dom";
 
 const AccountPage = () => {
+  const [account, setAccount] = useState([]);
+  const { id } = useParams();
   const [user, setUser] = useState([]);
-  const {token} = useParams();
+  const [userConnected, setUserConnected] = useState([]);
 
-  const getUser = async () => {
-    const res = await fetch("http://localhost:8000/api/auth/profile", {
+  useEffect(() => {
+    getUserConnected();
+    // getUser();
+  }  , []);
+
+  useEffect(() => {
+    getUser();
+  }, [userConnected]);
+
+
+  const  getUserConnected = async () => {
+    const token = TokenService.getTokenFromLocalStorage();
+    const res = await fetch(`http://localhost:8000/api/auth/profile`, {
       method: "GET",
       headers: {
-        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    const data = await res.json();
+    setUserConnected(data);
+  }
+
+  console.log("userConnected", userConnected);
+
+
+
+  const getUser = async () => {
+    const token = TokenService.getTokenFromLocalStorage();
+    const res = await fetch(`http://localhost:8000/api/users/${userConnected.sub}`, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
       },
     });
     const data = await res.json();
     setUser(data);
-  }
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
+  };
+  
   console.log("user", user);
+
+
+
   
 
 

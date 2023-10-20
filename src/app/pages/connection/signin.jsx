@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TokenService from '../../../setup/token.service';
 
 const Signin = () => {
     const [user, setUser] = useState([])
-    const navigate = useNavigate();
+    const [userConnect, setUserConnect] = useState([])
+    const navigate = useNavigate(); 
+    
+   
 
     const connectUser = async () => {
         const res = await fetch('http://localhost:8000/api/auth/login', {
@@ -17,7 +20,7 @@ const Signin = () => {
         })
         const data = await res.json();
         TokenService.setTokenInLocalStorage(data.access_token);
-        console.log(data.access_token);        
+        console.log(data.access_token); 
     }
 
     const handleChange = (e) => {
@@ -30,6 +33,7 @@ const Signin = () => {
         connectUser();
         navigate('/account');
     }
+
 
 
 
