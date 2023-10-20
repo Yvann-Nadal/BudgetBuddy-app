@@ -1,7 +1,13 @@
 import { Box, Button, FormControl, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ users }) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const user = users.find(user => user._id === id);
+  console.log(users, "zezeze");
+
   return (
     <Box
       sx={{
@@ -21,11 +27,9 @@ const Login = () => {
         }}>
         <TextField required label="Adresse mail" variant="outlined" />
         <TextField required label="Mot de passe" variant="outlined" type="password" />
-        <Link to="/dashboard">
-          <Button variant="contained" type="submit">
-            Se connecter
-          </Button>
-        </Link>
+        <Button variant="contained" type="submit" onClick={() => navigate(`/account/${user.id}`)}>
+          Se connecter
+        </Button>
       </FormControl>
     </Box>
   );
