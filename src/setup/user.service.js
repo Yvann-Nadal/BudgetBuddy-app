@@ -7,8 +7,12 @@ const getAllUsers = async () => {
     return response.data
 }
 
+
+
+
 const usersService = {
-    getAllUsers
+    getAllUsers,
+        
 }
 
 export default usersService;

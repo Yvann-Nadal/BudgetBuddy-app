@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import TokenService from '../../services/token.service';
+import TokenService from '../../../setup/token.service';
 
-const Signup = () => {
+const Signin = () => {
     const [user, setUser] = useState([])
     const navigate = useNavigate();
 
@@ -42,12 +42,12 @@ const Signup = () => {
                 <input type="text" name="username" id="username" onChange={handleChange}/>
                 <label htmlFor="password">Password</label>
                 <input type="text" name="password" id="password" onChange={handleChange}/>
-                <button type="submit">Signup</button>
+                <button type="submit">Signin</button>
             </form>
-        <Link href='/signup'> <button>S'inscrire</button></Link>
+        <Link href='/'> <button>S'inscrire</button></Link>
         </div>
         
      );
 }
  
-export default Signup;
+export default Signin;
