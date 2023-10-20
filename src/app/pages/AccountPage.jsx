@@ -12,7 +12,6 @@ const AccountPage = () => {
 
   useEffect(() => {
     getUserConnected();
-    // getUser();
   }  , []);
 
   useEffect(() => {
